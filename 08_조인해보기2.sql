@@ -22,3 +22,17 @@ FROM info
 INNER JOIN auth
 ON info.auth_id = auth.auth_id;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
