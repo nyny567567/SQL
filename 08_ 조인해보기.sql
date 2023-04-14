@@ -19,6 +19,73 @@ WHERE i.auth_id = a.auth_id;
 SELECT
     auth.auth_id, info.title, info.content, auth.name
 FROM info
-INNER JOIN auth
+INNER JOIN auth 
+--join auth와 같다
 ON info.auth_id = auth.auth_id;
+
+SELECT
+    a.auth_id, i.title, i.content, a.name
+FROM info i
+INNER JOIN auth a
+ON i.auth_id = a.auth_id;
+
+-- 필요한 데이터만 조회하겠다! 라고 한다면
+-- WHERE 구문을 통해 일반 조건을 걸어 주시면 됩니다.
+SELECT
+    a.auth_id, i.title, i.content, a.name
+FROM info i
+INNER JOIN auth a
+ON i.auth_id = a.auth_id
+where a.name = '이순신';
+
+-- 아우터(외부) 조인
+SELECT
+    *
+FROM info i right JOIN auth a
+-- right after join과 같다
+ON i.auth_id = a.auth_id;
+
+SELECT
+    *
+from info i, auth a
+where i.auth_id = a.auth_id(+);
+-- 위와 같다 위- ansi 아래- oracle 문법
+
+-- 좌측 테이블과 우측 테이블 데이터를 모두 읽어 중복된 데이터는 삭제되는 외부 조인.
+SELECT *
+FROM info i FULL JOIN auth a
+ON i.auth_id = a.auth_id;
+
+--아우터 조인 종류 : left/ right/ full
+
+-- CROSS JOIN은 JOIN조건을 설정하지 않기 때문에
+-- 단순히 모든 컬럼에 대해 JOIN을 진행합니다.
+-- 실제로는 거의 사용하지 않습니다.
+
+SELECT * FROM info
+CROSS JOIN auth
+ORDER BY id ASC;
+
+-- 여러 개 테이블 조인 -> 키 값만 찾아서 구문을 연결해서 쓰시면 됩니다.
+SELECT
+    *
+FROM employees e
+LEFT JOIN departments d ON e.department_id = d.department_id
+LEFT JOIN locations loc ON d.location_id = loc.location_id;
+
+/*
+- 테이블 별칭 a, i를 이용하여 LEFT OUTER JOIN 사용.
+- info, auth 테이블 사용
+- job 컬럼이 scientist인 사람의 id, title, content, job을 출력.
+*/
+
+SELECT
+    i.id,
+    i.title,
+    i.content,
+    a.job
+FROM auth a LEFT JOIN info i
+ON a.auth_id = i.auth_id
+WHERE a.job = 'scientist';
+
 
