@@ -64,16 +64,3 @@ END;
 
 SELECT * FROM emps;
 
-
-
-
-
-
-
-
-
-
-
-
-
-

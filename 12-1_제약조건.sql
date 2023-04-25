@@ -1,4 +1,4 @@
-
+            
 -- 테이블 생성과 제약조건
 -- 테이블 열레벨 제약조건 (PRIMARY KEY, UNIQUE, NOT NULL, FOREIGN KEY, CHECK)
 -- PRIMARY KEY: 테이블의 고유 식별 컬럼입니다. (주요 키)
